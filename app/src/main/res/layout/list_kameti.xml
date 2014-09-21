@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:weightSum="3">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView"
+            android:layout_gravity="center"
+            android:src="@drawable/kameti" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/kametiName"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:lines="2"
+            android:padding="10dp"
+            android:singleLine="false"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/lastBid"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:lines="2"
+            android:padding="10dp"
+            android:singleLine="false"
+            android:textSize="20dp"
+            android:textColor="#dc8d8d8d"
+            android:gravity="center_vertical|right" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/remainingMonths"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:lines="2"
+            android:padding="10dp"
+            android:singleLine="false"
+            android:textSize="20dp"
+            android:textStyle="italic"
+            android:textColor="#dc8d8d8d"
+            android:gravity="center_vertical|right" />
+    </LinearLayout>
+    <View android:background="#ccc" android:layout_width="match_parent" android:layout_height="4px"/>
+</LinearLayout>
