@@ -33,7 +33,6 @@ public class CallAPI extends AsyncTask<String, String, String> {
             resultToDisplay = convertStreamToString(in);
         } catch (Exception e ) {
             resultToDisplay = "";
-            Toast.makeText(app, "Connection Failure", Toast.LENGTH_SHORT).show();
         }
         return resultToDisplay;
     }
@@ -41,6 +40,9 @@ public class CallAPI extends AsyncTask<String, String, String> {
     protected void onPostExecute(String response) {
         if(response != null && !response.isEmpty()) {
             handler.execute(response);
+        }
+        else{
+            Toast.makeText(app, "Connection Failure", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -7,9 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.GridView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 public class Kameties extends Activity {
     @Override
@@ -21,16 +24,16 @@ public class Kameties extends Activity {
 
         KametiDbHelper kametiDbHelper = new KametiDbHelper(getBaseContext());
         SQLiteDatabase db = kametiDbHelper.getReadableDatabase();
-        String[] dbSelect = {"`_id`", "`name`"};
-        String dbWhere = null;
+        String[] dbSelect = {"`kameti_id` as _id", "`kameti_name`", "`kameti_amount`", "`user_name`"};
+        String dbWhere = "`kameti`.`admin_id` = `members`.`member_id`";
         String[] dbArgs = null;
         String dbGroupBy = null;
         String dbFilterBy = null;
         String dbSortBy = null;
-        Cursor c = db.query("`Kameti`", dbSelect, dbWhere, dbArgs, dbGroupBy, dbFilterBy, dbSortBy);
+        Cursor c = db.query("`kameti`, `members`", dbSelect, dbWhere, dbArgs, dbGroupBy, dbFilterBy, dbSortBy);
         if (c != null) {
             GridView grid = (GridView) findViewById(R.id.gridView);
-            String[] from = {"name", "name", "name"};
+            String[] from = {"kameti_name", "kameti_amount", "user_name"};
             int[] to = {R.id.kametiName, R.id.lastBid, R.id.remainingMonths};
             SimpleCursorAdapter adapter = new SimpleCursorAdapter(
                     this,
@@ -41,6 +44,14 @@ public class Kameties extends Activity {
                     CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
             );
             grid.setAdapter(adapter);
+            grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> row, View element, int elementPosition, long rowId) {
+                    Intent intent = new Intent(getApplicationContext(), ViewKameti.class);
+                    intent.putExtra("rowId", rowId);
+                    startActivity(intent);
+                }
+            });
         }
     }
 

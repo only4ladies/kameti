@@ -29,9 +29,9 @@ public class AddKameti extends Activity {
                 if(kametiName != null && !kametiName.isEmpty()) {
                     KametiDbHelper kametiDbHelper = new KametiDbHelper(getBaseContext());
                     SQLiteDatabase db = kametiDbHelper.getWritableDatabase();
-                    ContentValues values = new ContentValues();
-                    values.put("`name`", kametiName);
-                    db.insert("`Kameti`", null, values);
+                    //ContentValues values = new ContentValues();
+                    //values.put("`name`", kametiName);
+                    //db.insert("`Kameti`", null, values);
                     Intent intent = new Intent(getApplicationContext(), Kameties.class);
                     startActivity(intent);
                 }

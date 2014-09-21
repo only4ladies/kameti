@@ -2,12 +2,12 @@
 <resources>
 
     <string name="app_name">Kameti</string>
-
     <string name="title_activity_add_kameti">Add Kameti</string>
     <string name="title_activity_kameties">Kameties</string>
     <string name="title_activity_register">Basic Info</string>
-
     <string name="action_settings">Settings</string>
     <string name="action_add">Add</string>
+    <string name="title_activity_view_kameti">Kameti</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
