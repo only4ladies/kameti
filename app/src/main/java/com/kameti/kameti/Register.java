@@ -52,6 +52,7 @@ public class Register extends Activity {
                 if ("OK".equalsIgnoreCase(result.trim())) {
                     Intent intent = new Intent(getApplicationContext(), Kameties.class);
                     startActivity(intent);
+                    finish();
                 }
             }
             catch (JSONException e){

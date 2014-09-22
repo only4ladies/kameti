@@ -36,6 +36,7 @@ public class Login extends Activity {
         if(localNumber != null && !localNumber.isEmpty()) {
             Intent intent = new Intent(getApplicationContext(), Kameties.class);
             startActivity(intent);
+            finish();
         }
 
         Button send_sms = (Button) findViewById(R.id.send_sms);
@@ -99,9 +100,11 @@ public class Login extends Activity {
                     if (registered == 1) {
                         Intent intent = new Intent(getApplicationContext(), Kameties.class);
                         startActivity(intent);
+                        finish();
                     } else {
                         Intent intent = new Intent(getApplicationContext(), Register.class);
                         startActivity(intent);
+                        finish();
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "Invalid Code", Toast.LENGTH_SHORT).show();
