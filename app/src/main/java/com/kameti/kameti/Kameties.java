@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
@@ -32,7 +33,7 @@ public class Kameties extends Activity {
         String dbSortBy = null;
         Cursor c = db.query("`kameti`, `members`", dbSelect, dbWhere, dbArgs, dbGroupBy, dbFilterBy, dbSortBy);
         if (c != null) {
-            GridView grid = (GridView) findViewById(R.id.gridView);
+            ListView list = (ListView) findViewById(R.id.listView);
             String[] from = {"kameti_name", "kameti_amount", "user_name"};
             int[] to = {R.id.kametiName, R.id.lastBid, R.id.remainingMonths};
             SimpleCursorAdapter adapter = new SimpleCursorAdapter(
@@ -43,8 +44,8 @@ public class Kameties extends Activity {
                     to,
                     CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
             );
-            grid.setAdapter(adapter);
-            grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            list.setAdapter(adapter);
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> row, View element, int elementPosition, long rowId) {
                     Intent intent = new Intent(getApplicationContext(), ViewKameti.class);
