@@ -30,7 +30,8 @@
             android:singleLine="false"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:gravity="center_vertical" />
+            android:gravity="center_vertical"
+            android:textColor="#ff9f1346" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -61,5 +62,5 @@
             android:textColor="#dc8d8d8d"
             android:gravity="center_vertical|right" />
     </LinearLayout>
-    <View android:background="#ccc" android:layout_width="match_parent" android:layout_height="4px"/>
+    <View android:background="#ffccbf7d" android:layout_width="match_parent" android:layout_height="4px"/>
 </LinearLayout>

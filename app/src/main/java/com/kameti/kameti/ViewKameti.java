@@ -51,6 +51,24 @@ public class ViewKameti extends Activity {
                             view[i].setText(admin.getString(0));
                         }
                     }
+                    else if(i == 5){
+                        view[i].setText(c.getString(i) + " INR");
+                    }
+                    else if(i == 6){
+                        view[i].setText(c.getString(i) + "%");
+                    }
+                    else if(i == 9){
+                        view[i].setText(c.getString(i) + " INR");
+                    }
+                    else if(i == 10){
+                        view[i].setText(c.getString(i) + " minutes");
+                    }
+                    else if(i == 11){
+                        view[i].setText(c.getString(i) + " INR");
+                    }
+                    else if(i == 13){
+                        view[i].setText(c.getString(i) + "%");
+                    }
                     else{
                         view[i].setText(c.getString(i));
                     }
