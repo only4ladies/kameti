@@ -45,7 +45,15 @@ public class ViewKameti extends Activity {
         if (c.moveToFirst()) {
             for(int i=0; i<view.length; i++){
                 if(view[i] != null){
-                    view[i].setText(c.getString(i));
+                    if(i == 2) {
+                        Cursor admin = db.rawQuery("SELECT `user_name` FROM `members` WHERE `member_id`=" + c.getString(i), null);
+                        if(admin.moveToFirst()) {
+                            view[i].setText(admin.getString(0));
+                        }
+                    }
+                    else{
+                        view[i].setText(c.getString(i));
+                    }
                 }
             }
         }
