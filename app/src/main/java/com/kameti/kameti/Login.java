@@ -35,6 +35,7 @@ public class Login extends Activity {
         String localNumber = sharedPref.getString("phoneNumber", "");
         if(localNumber != null && !localNumber.isEmpty()) {
             Intent intent = new Intent(getApplicationContext(), Kameties.class);
+            intent.putExtra("phoneNumber", localNumber);
             startActivity(intent);
             finish();
         }
@@ -46,7 +47,13 @@ public class Login extends Activity {
             public void onClick(View v) {
                 phoneNumber = phoneNumberView.getText().toString();
                 if(phoneNumber != null && !phoneNumber.isEmpty()) {
-                    new CallAPI(new handlerSendSMS(), getApplicationContext()).execute(API_SEND_SMS + "?number=" + phoneNumber);
+                    try {
+                        JSONObject data = new JSONObject();
+                        data.put("number", phoneNumber);
+                        new CallAPI(new handlerSendSMS(), getApplicationContext()).execute(API_SEND_SMS, "PUT", data.toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -72,6 +79,7 @@ public class Login extends Activity {
     }
 
     private class handlerSendSMS implements ApiHandler {
+        @Override
         public void execute(String response) {
             try {
                 JSONObject reader = new JSONObject(response);
@@ -85,9 +93,14 @@ public class Login extends Activity {
 
             }
         }
+        @Override
+        public void postExecute() {
+
+        }
     }
 
     private class handlerVerify implements ApiHandler {
+        @Override
         public void execute(String response) {
             try {
                 JSONObject reader = new JSONObject(response);
@@ -99,10 +112,12 @@ public class Login extends Activity {
                     int registered = reader.getInt("registered");
                     if (registered == 1) {
                         Intent intent = new Intent(getApplicationContext(), Kameties.class);
+                        intent.putExtra("phoneNumber", phoneNumber);
                         startActivity(intent);
                         finish();
                     } else {
                         Intent intent = new Intent(getApplicationContext(), Register.class);
+                        intent.putExtra("phoneNumber", phoneNumber);
                         startActivity(intent);
                         finish();
                     }
@@ -113,6 +128,10 @@ public class Login extends Activity {
             catch (JSONException e){
 
             }
+        }
+        @Override
+        public void postExecute() {
+
         }
     }
 }

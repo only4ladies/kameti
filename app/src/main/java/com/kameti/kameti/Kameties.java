@@ -16,11 +16,14 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 public class Kameties extends Activity {
+
+    String phoneNumber = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kameties);
-
+        phoneNumber = getIntent().getExtras().getString("phoneNumber");
         //GET_API
 
         KametiDbHelper kametiDbHelper = new KametiDbHelper(getBaseContext());
@@ -49,6 +52,7 @@ public class Kameties extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> row, View element, int elementPosition, long rowId) {
                     Intent intent = new Intent(getApplicationContext(), ViewKameti.class);
+                    intent.putExtra("phoneNumber", phoneNumber);
                     intent.putExtra("rowId", rowId);
                     startActivity(intent);
                 }
@@ -70,6 +74,7 @@ public class Kameties extends Activity {
         }
         if (id == R.id.action_add) {
             Intent intent = new Intent(getApplicationContext(), AddKameti.class);
+            intent.putExtra("phoneNumber", phoneNumber);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

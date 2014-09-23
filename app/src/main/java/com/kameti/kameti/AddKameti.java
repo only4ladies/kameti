@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 public class AddKameti extends Activity {
 
+    String phoneNumber = null;
     String kameti_name = null;
     String kameti_start_date = null;
     TextView value_kameti_name = null;
@@ -23,6 +24,7 @@ public class AddKameti extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_kameti);
+        phoneNumber = getIntent().getExtras().getString("phoneNumber");
 
         value_kameti_name = (TextView) findViewById(R.id.value_kamet_name);
         value_kameti_start_date = (DatePicker) findViewById(R.id.value_kameti_start_date);

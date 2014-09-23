@@ -1,19 +1,33 @@
 package com.kameti.kameti;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class ViewKameti extends Activity {
+
+    SharedPreferences sharedPref = null;
+    String phoneNumber = null;
+    long adminId;
+    String API_MEMBER = "http://aaagrawa7-win7:8082/kameti/member.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_kameti);
+        sharedPref = getPreferences(Context.MODE_PRIVATE);
+        phoneNumber = getIntent().getExtras().getString("phoneNumber");
 
         TextView[] view = {
                 null,
@@ -46,6 +60,7 @@ public class ViewKameti extends Activity {
             for(int i=0; i<view.length; i++){
                 if(view[i] != null){
                     if(i == 2) {
+                        adminId = c.getLong(i);
                         Cursor admin = db.rawQuery("SELECT `user_name` FROM `members` WHERE `member_id`=" + c.getString(i), null);
                         if(admin.moveToFirst()) {
                             view[i].setText(admin.getString(0));
@@ -80,6 +95,7 @@ public class ViewKameti extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.view_kameti, menu);
+        new CallAPI(new handlerCheckAdmin(menu), getApplicationContext()).execute(API_MEMBER + "?number=" + phoneNumber);
         return true;
     }
 
@@ -90,5 +106,38 @@ public class ViewKameti extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private class handlerCheckAdmin implements ApiHandler {
+
+        private Menu menu = null;
+
+        handlerCheckAdmin(Menu menu){
+            this.menu = menu;
+        }
+        @Override
+        public void execute(String response) {
+            try {
+                JSONObject reader = new JSONObject(response);
+                String result = reader.getString("result");
+                if ("OK".equalsIgnoreCase(result.trim())) {
+                    long myId = reader.getLong("member_id");
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putLong("memberId", myId);
+                    editor.commit();
+                }
+            }
+            catch (JSONException e){
+
+            }
+        }
+        @Override
+        public void postExecute() {
+            long myId = sharedPref.getLong("memberId", -1);
+            if(myId == adminId){
+                MenuItem menu_edit = menu.findItem(R.id.action_edit);
+                menu_edit.setVisible(true);
+            }
+        }
     }
 }
