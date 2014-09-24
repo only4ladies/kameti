@@ -28,6 +28,9 @@ public class Register extends Activity {
 
         Button done = (Button) findViewById(R.id.done);
         fullNameView = (TextView) findViewById(R.id.fullName);
+
+        //TODO: Add optional field for profile pic
+
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

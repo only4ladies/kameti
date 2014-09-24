@@ -16,13 +16,13 @@
             android:layout_height="match_parent"
             android:id="@+id/imageView"
             android:layout_gravity="center"
-            android:src="@drawable/kameti" />
+            android:src="@drawable/ic_auction" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/kametiName"
+            android:id="@+id/auctionDate"
             android:layout_weight="1"
             android:ellipsize="end"
             android:lines="2"
@@ -33,65 +33,32 @@
             android:gravity="center_vertical"
             android:textColor="#ff9f1346" />
 
-        <LinearLayout
-            android:orientation="vertical"
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/auctionStartTime"
             android:layout_weight="1"
-            android:weightSum="2"
-            android:id="@+id/linearLayout2">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="New Text"
-                android:id="@+id/kametiAmount"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:lines="1"
-                android:singleLine="false"
-                android:textSize="20dp"
-                android:textStyle="italic"
-                android:textColor="#dc8d8d8d"
-                android:linksClickable="false"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="10dp"
-                android:gravity="center" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="INR"
-                android:id="@+id/textView"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:lines="1"
-                android:singleLine="false"
-                android:textSize="15dp"
-                android:textStyle="italic"
-                android:textColor="#dc8d8d8d"
-                android:linksClickable="false"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp"
-                android:gravity="center" />
-
-        </LinearLayout>
+            android:ellipsize="end"
+            android:lines="2"
+            android:padding="10dp"
+            android:singleLine="false"
+            android:textSize="20dp"
+            android:textColor="#dc8d8d8d"
+            android:gravity="center|center_vertical" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:weightSum="2"
-            android:id="@+id/linearLayout3">
+            android:weightSum="2">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Created by"
-                android:id="@+id/textView4"
+                android:text="Bid starts from"
+                android:id="@+id/textView2"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:lines="1"
@@ -109,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/kametiAdmin"
+                android:id="@+id/minimumBidAmount"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:lines="1"

@@ -35,6 +35,10 @@
             android:name=".ViewKameti"
             android:label="@string/title_activity_view_kameti" >
         </activity>
+        <activity
+            android:name=".Auctions"
+            android:label="@string/title_activity_auctions" >
+        </activity>
     </application>
 
 </manifest>

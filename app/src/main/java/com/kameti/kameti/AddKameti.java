@@ -30,6 +30,8 @@ public class AddKameti extends Activity {
         value_kameti_start_date = (DatePicker) findViewById(R.id.value_kameti_start_date);
 
         value_kameti_start_date.setCalendarViewShown(false);
+
+        //TODO: Split add kameti procedure in 4 screens
     }
 
     @Override

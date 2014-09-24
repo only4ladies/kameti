@@ -5,45 +5,49 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
+import android.widget.TextView;
 
-public class Kameties extends Activity {
+public class Auctions extends Activity {
 
     String phoneNumber = null;
+    String kametiName = null;
+    long kametiId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kameties);
+        setContentView(R.layout.activity_auctions);
         phoneNumber = getIntent().getExtras().getString("phoneNumber");
+        kametiId = getIntent().getExtras().getLong("kametiId");
+        kametiName = getIntent().getExtras().getString("kametiName");
+        TextView kametiNameView = (TextView) findViewById(R.id.value_kamet_name);
+        kametiNameView.setText(kametiName);
 
-        //TODO: Fetch latest list of kameties from server
+        //TODO: Fetch latest list of auctions from server
 
         KametiDbHelper kametiDbHelper = new KametiDbHelper(getBaseContext(), phoneNumber);
         SQLiteDatabase db = kametiDbHelper.getReadableDatabase();
-        String[] dbSelect = {"`kameti_id` as _id", "`kameti_name`", "`kameti_amount`", "`user_name`"};
-        String dbWhere = "`kameti`.`admin_id` = `members`.`member_id`";
+        String[] dbSelect = {"`auction_id` as _id", "`auction_date`", "`auction_start_time`", "`minimum_bid_amount`"};
+        String dbWhere = "`kameti_id`=" + kametiId;
         String[] dbArgs = null;
         String dbGroupBy = null;
         String dbFilterBy = null;
-        String dbSortBy = null;
-        Cursor c = db.query("`kameti`, `members`", dbSelect, dbWhere, dbArgs, dbGroupBy, dbFilterBy, dbSortBy);
+        String dbSortBy = "`auction_start_time`";
+        Cursor c = db.query("`auction`", dbSelect, dbWhere, dbArgs, dbGroupBy, dbFilterBy, dbSortBy);
         if (c != null) {
             ListView list = (ListView) findViewById(R.id.listView);
-            String[] from = {"kameti_name", "kameti_amount", "user_name"};
-            int[] to = {R.id.kametiName, R.id.kametiAmount, R.id.kametiAdmin};
+            String[] from = {"auction_date", "auction_start_time", "minimum_bid_amount"};
+            int[] to = {R.id.auctionDate, R.id.auctionStartTime, R.id.minimumBidAmount};
             SimpleCursorAdapter adapter = new SimpleCursorAdapter(
                     this,
-                    R.layout.list_kameti,
+                    R.layout.list_auction,
                     c,
                     from,
                     to,
@@ -53,39 +57,22 @@ public class Kameties extends Activity {
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> row, View element, int elementPosition, long rowId) {
-                    Intent intent = new Intent(getApplicationContext(), ViewKameti.class);
-                    intent.putExtra("phoneNumber", phoneNumber);
-                    intent.putExtra("kametiId", rowId);
-                    startActivity(intent);
+                    //TODO: Open auction details
                 }
             });
         }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.kameties, menu);
+        getMenuInflater().inflate(R.menu.auctions, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
         }
-        if (id == R.id.action_add) {
-            Intent intent = new Intent(getApplicationContext(), AddKameti.class);
-            intent.putExtra("phoneNumber", phoneNumber);
-            startActivity(intent);
-        }
-        if (id == R.id.action_logout) {
-            Intent intent = new Intent(getApplicationContext(), Login.class);
-            intent.putExtra("action", "logout");
-            startActivity(intent);
-            finish();
-        }
-        //TODO: Edit profile feature
         return super.onOptionsItemSelected(item);
     }
 }

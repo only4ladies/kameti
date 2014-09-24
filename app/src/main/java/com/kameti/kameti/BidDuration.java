@@ -1,7 +1,5 @@
 package com.kameti.kameti;
 
-import android.util.Log;
-
 import java.util.GregorianCalendar;
 
 public class BidDuration {

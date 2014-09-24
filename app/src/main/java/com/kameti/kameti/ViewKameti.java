@@ -2,6 +2,7 @@ package com.kameti.kameti;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,7 +18,9 @@ public class ViewKameti extends Activity {
     SharedPreferences sharedPref = null;
     String phoneNumber = null;
     BidDuration bidDuration = null;
+    String kametiName = null;
     long adminId;
+    long kametiId;
     String API_MEMBER = "http://aaagrawa7-win7:8082/kameti/member.php";
     String API_TIME = "http://aaagrawa7-win7:8082/kameti/time.php";
 
@@ -27,6 +30,7 @@ public class ViewKameti extends Activity {
         setContentView(R.layout.activity_view_kameti);
         sharedPref = getPreferences(Context.MODE_PRIVATE);
         phoneNumber = getIntent().getExtras().getString("phoneNumber");
+        kametiId = getIntent().getExtras().getLong("kametiId");
 
         TextView[] view = {
                 null,
@@ -45,17 +49,17 @@ public class ViewKameti extends Activity {
                 (TextView) findViewById(R.id.value_runnerup_percentage),
                 null
         };
-        long rowId = getIntent().getExtras().getLong("rowId");
         KametiDbHelper kametiDbHelper = new KametiDbHelper(getBaseContext(), phoneNumber);
         SQLiteDatabase db = kametiDbHelper.getReadableDatabase();
         String[] dbSelect = {"*"};
-        String dbWhere = "`kameti_id`=" + rowId;
+        String dbWhere = "`kameti_id`=" + kametiId;
         String[] dbArgs = null;
         String dbGroupBy = null;
         String dbFilterBy = null;
         String dbSortBy = null;
         Cursor c = db.query("`kameti`", dbSelect, dbWhere, dbArgs, dbGroupBy, dbFilterBy, dbSortBy);
         if (c.moveToFirst()) {
+            kametiName = c.getString(1);
             adminId = c.getLong(2);
             bidDuration = new BidDuration(c.getString(3), c.getString(7), c.getString(8), c.getInt(4));
             for(int i=0; i<view.length; i++){
@@ -105,6 +109,19 @@ public class ViewKameti extends Activity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
+        }
+        if (id == R.id.action_auctions) {
+            Intent intent = new Intent(getApplicationContext(), Auctions.class);
+            intent.putExtra("phoneNumber", phoneNumber);
+            intent.putExtra("kametiId", kametiId);
+            intent.putExtra("kametiName", kametiName);
+            startActivity(intent);
+        }
+        if (id == R.id.action_edit) {
+            //TODO: Edit kameti feature
+        }
+        if (id == R.id.action_bid) {
+            //TODO: Show bids of currently running auction
         }
         return super.onOptionsItemSelected(item);
     }
