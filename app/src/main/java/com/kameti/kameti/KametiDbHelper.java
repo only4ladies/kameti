@@ -8,7 +8,6 @@ import android.provider.BaseColumns;
 public class KametiDbHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 9;
-    public static final String DATABASE_NAME = "Kameti.db";
     private static final String TABLE_kameti =
     "CREATE TABLE `kameti` (" +
             "`kameti_id` INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -35,8 +34,8 @@ public class KametiDbHelper extends SQLiteOpenHelper {
             "`pic` BLOB" +
             ")";
 
-    public KametiDbHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    public KametiDbHelper(Context context, String phoneNumber) {
+        super(context, phoneNumber + ".db", null, DATABASE_VERSION);
     }
 
     public void onCreate(SQLiteDatabase db) {

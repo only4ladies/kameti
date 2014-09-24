@@ -13,6 +13,7 @@
     <string name="action_edit">EDIT</string>
     <string name="action_bid">BID</string>
     <string name="action_auctions">AUCTIONS</string>
+    <string name="action_logout">Logout</string>
 
     <string name="title_activity_view_kameti">Kameti</string>
 

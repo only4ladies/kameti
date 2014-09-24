@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +27,7 @@ public class Kameties extends Activity {
         phoneNumber = getIntent().getExtras().getString("phoneNumber");
         //GET_API
 
-        KametiDbHelper kametiDbHelper = new KametiDbHelper(getBaseContext());
+        KametiDbHelper kametiDbHelper = new KametiDbHelper(getBaseContext(), phoneNumber);
         SQLiteDatabase db = kametiDbHelper.getReadableDatabase();
         String[] dbSelect = {"`kameti_id` as _id", "`kameti_name`", "`kameti_amount`", "`user_name`"};
         String dbWhere = "`kameti`.`admin_id` = `members`.`member_id`";
@@ -76,6 +77,12 @@ public class Kameties extends Activity {
             Intent intent = new Intent(getApplicationContext(), AddKameti.class);
             intent.putExtra("phoneNumber", phoneNumber);
             startActivity(intent);
+        }
+        if (id == R.id.action_logout) {
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            intent.putExtra("action", "logout");
+            startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

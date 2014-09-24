@@ -47,7 +47,7 @@ public class ViewKameti extends Activity {
                 null
         };
         long rowId = getIntent().getExtras().getLong("rowId");
-        KametiDbHelper kametiDbHelper = new KametiDbHelper(getBaseContext());
+        KametiDbHelper kametiDbHelper = new KametiDbHelper(getBaseContext(), phoneNumber);
         SQLiteDatabase db = kametiDbHelper.getReadableDatabase();
         String[] dbSelect = {"*"};
         String dbWhere = "`kameti_id`=" + rowId;

@@ -32,6 +32,18 @@ public class Login extends Activity {
         DEVICE_ID = Secure.getString(getBaseContext().getContentResolver(), Secure.ANDROID_ID);
         sharedPref = getPreferences(Context.MODE_PRIVATE);
 
+        try {
+            String action = getIntent().getExtras().getString("action");
+            if (action.equals("logout")) {
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.remove("phoneNumber");
+                editor.commit();
+            }
+        }
+        catch(NullPointerException e) {
+
+        }
+
         String localNumber = sharedPref.getString("phoneNumber", "");
         if(localNumber != null && !localNumber.isEmpty()) {
             Intent intent = new Intent(getApplicationContext(), Kameties.class);
