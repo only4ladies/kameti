@@ -2,7 +2,6 @@ package com.kameti.kameti;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,8 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,8 +16,10 @@ public class ViewKameti extends Activity {
 
     SharedPreferences sharedPref = null;
     String phoneNumber = null;
+    BidDuration bidDuration = null;
     long adminId;
     String API_MEMBER = "http://aaagrawa7-win7:8082/kameti/member.php";
+    String API_TIME = "http://aaagrawa7-win7:8082/kameti/time.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +56,11 @@ public class ViewKameti extends Activity {
         String dbSortBy = null;
         Cursor c = db.query("`kameti`", dbSelect, dbWhere, dbArgs, dbGroupBy, dbFilterBy, dbSortBy);
         if (c.moveToFirst()) {
+            adminId = c.getLong(2);
+            bidDuration = new BidDuration(c.getString(3), c.getString(7), c.getString(8), c.getInt(4));
             for(int i=0; i<view.length; i++){
                 if(view[i] != null){
                     if(i == 2) {
-                        adminId = c.getLong(i);
                         Cursor admin = db.rawQuery("SELECT `user_name` FROM `members` WHERE `member_id`=" + c.getString(i), null);
                         if(admin.moveToFirst()) {
                             view[i].setText(admin.getString(0));
@@ -96,6 +96,7 @@ public class ViewKameti extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.view_kameti, menu);
         new CallAPI(new handlerCheckAdmin(menu), getApplicationContext()).execute(API_MEMBER + "?number=" + phoneNumber);
+        new CallAPI(new handlerGetTime(menu), getApplicationContext()).execute(API_TIME);
         return true;
     }
 
@@ -138,6 +139,36 @@ public class ViewKameti extends Activity {
                 MenuItem menu_edit = menu.findItem(R.id.action_edit);
                 menu_edit.setVisible(true);
             }
+        }
+    }
+
+    private class handlerGetTime implements ApiHandler {
+
+        private Menu menu = null;
+
+        handlerGetTime(Menu menu){
+            this.menu = menu;
+        }
+        @Override
+        public void execute(String response) {
+            try {
+                JSONObject reader = new JSONObject(response);
+                String result = reader.getString("result");
+                if ("OK".equalsIgnoreCase(result.trim())) {
+                    long current_time = reader.getLong("current_time");
+                    if(bidDuration.contains(current_time)){
+                        MenuItem menu_bid = menu.findItem(R.id.action_bid);
+                        menu_bid.setEnabled(true);
+                    }
+                }
+            }
+            catch (JSONException e){
+
+            }
+        }
+        @Override
+        public void postExecute() {
+
         }
     }
 }
