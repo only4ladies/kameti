@@ -19,8 +19,10 @@ public class ViewKameti extends Activity {
     String phoneNumber = null;
     BidDuration bidDuration = null;
     String kametiName = null;
+    int kametiMembers;
     long adminId;
     long kametiId;
+
     String API_MEMBER = "http://aaagrawa7-win7:8082/kameti/member.php";
     String API_TIME = "http://aaagrawa7-win7:8082/kameti/time.php";
 
@@ -60,6 +62,7 @@ public class ViewKameti extends Activity {
         Cursor c = db.query("`kameti`", dbSelect, dbWhere, dbArgs, dbGroupBy, dbFilterBy, dbSortBy);
         if (c.moveToFirst()) {
             kametiName = c.getString(1);
+            kametiMembers = c.getInt(4);
             adminId = c.getLong(2);
             bidDuration = new BidDuration(c.getString(3), c.getString(7), c.getString(8), c.getInt(4));
             for(int i=0; i<view.length; i++){
@@ -115,6 +118,7 @@ public class ViewKameti extends Activity {
             intent.putExtra("phoneNumber", phoneNumber);
             intent.putExtra("kametiId", kametiId);
             intent.putExtra("kametiName", kametiName);
+            intent.putExtra("kametiMembers", kametiMembers);
             startActivity(intent);
         }
         if (id == R.id.action_edit) {

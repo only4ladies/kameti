@@ -7,7 +7,7 @@ import android.provider.BaseColumns;
 
 public class KametiDbHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 12;
+    public static final int DATABASE_VERSION = 14;
     private static final String TABLE_kameti =
     "CREATE TABLE `kameti` (" +
             "`kameti_id` INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -70,8 +70,9 @@ public class KametiDbHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO `members` VALUES(1, 'Aayush', '9971308922', NULL)");
         db.execSQL("INSERT INTO `kameti` VALUES(1, 'Gokuldham', 1, '2014-09-19', 10, 25000, 1.5, '13:30:00', '15:00:00', 100, 5, 200, 2, 50, 1)");
         db.execSQL("INSERT INTO `kameti` VALUES(3, 'Sector25', 1, '2014-09-19', 10, 20000, 1.5, '13:30:00', '15:00:00', 100, 5, 200, 2, 50, 1)");
-        db.execSQL("INSERT INTO `auction` VALUES(1, 1, '2014-09-19', '13:30:00', '15:00:00', NULL, NULL, 3375, NULL, NULL, 1.5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)");
+        db.execSQL("INSERT INTO `auction` VALUES(1, 1, '2014-09-19', '13:30:00', '15:00:00', 1, NULL, 3375, NULL, NULL, 1.5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)");
         db.execSQL("INSERT INTO `auction` VALUES(2, 1, '2014-10-19', '13:30:00', '15:00:00', NULL, NULL, 3000, NULL, NULL, 1.5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)");
+        db.execSQL("INSERT INTO `auction` VALUES(3, 1, '2014-11-19', '13:30:00', '15:00:00', NULL, NULL, 2625, NULL, NULL, 1.5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)");
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

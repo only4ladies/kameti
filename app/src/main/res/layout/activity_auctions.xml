@@ -34,9 +34,9 @@
 
     <View android:background="#ffccbf7d" android:layout_width="match_parent" android:layout_height="4px"/>
 
-    <ListView
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listView" />
+        android:id="@+id/auctionsTable"></TableLayout>
 
 </LinearLayout>

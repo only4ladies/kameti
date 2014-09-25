@@ -5,10 +5,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/ic_background">
 
-    <ListView
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:fastScrollAlwaysVisible="false" />
-
+        android:id="@+id/tableLayout"></TableLayout>
 </LinearLayout>
