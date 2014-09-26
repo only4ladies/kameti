@@ -6,63 +6,73 @@
     tools:context=".Register"
     android:background="@drawable/ic_background">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:id="@+id/linearLayout">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:src="@drawable/ic_three"
-            android:layout_marginRight="10dp" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:text="Enter your identity"
-            android:id="@+id/textView"
-            android:gravity="center_vertical"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:textColor="#ffff9d00" />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hmm.. Seems like you are logging in for the first time. Please mention your full name so that people can easily recognize you"
-        android:id="@+id/textView2"
-        android:paddingLeft="80dp"
-        android:paddingRight="30dp"
-        android:textColor="#ff9f1346" />
-
-    <EditText
-        android:id="@+id/fullName"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Full Name"
-        android:inputType="textPersonName"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="30dp">
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:fillViewport="true" >
 
-        <requestFocus />
-    </EditText>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
-    <Button
-        android:id="@+id/done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="Done"
-        android:layout_marginRight="30dp"
-        android:textColor="#ff9f1346" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/linearLayout" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView"
+                    android:src="@drawable/ic_three"
+                    android:layout_marginRight="10dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:text="Enter your identity"
+                    android:id="@+id/textView"
+                    android:gravity="center_vertical"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffff9d00" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hmm.. Seems like you are logging in for the first time. Please mention your full name so that people can easily recognize you"
+                android:id="@+id/textView2"
+                android:paddingLeft="80dp"
+                android:paddingRight="30dp"
+                android:textColor="#ff9f1346" />
+
+            <EditText
+                android:id="@+id/fullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Full Name"
+                android:inputType="textPersonName"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="30dp" />
+
+            <Button
+                android:id="@+id/done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="Done"
+                android:layout_marginRight="30dp"
+                android:textColor="#ff9f1346" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -3,51 +3,64 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/ic_background"
-    android:padding="30dp">
+    android:background="@drawable/ic_background">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Kameti name:"
-        android:id="@+id/key_kameti_name"
-        android:autoText="false"
-        android:lines="1"
-        android:singleLine="true"
-        android:textSize="18dp"
-        android:ellipsize="end"
-        android:textColor="#ff9f1346"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView2"
+        android:fillViewport="true" >
 
-    <EditText
-        android:id="@+id/value_kameti_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="30dp"
+            android:id="@+id/linearLayout3">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Start date:"
-        android:id="@+id/key_kameti_start_date"
-        android:autoText="false"
-        android:lines="1"
-        android:singleLine="true"
-        android:textSize="18dp"
-        android:ellipsize="end"
-        android:textColor="#ff9f1346"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kameti name:"
+                android:id="@+id/key_kameti_name"
+                android:autoText="false"
+                android:lines="1"
+                android:singleLine="true"
+                android:textSize="18dp"
+                android:ellipsize="end"
+                android:textColor="#ff9f1346"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold" />
 
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/value_kameti_start_date"
-        android:calendarViewShown="false"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/ic_box">
+            <EditText
+                android:id="@+id/value_kameti_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
 
-    </DatePicker>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Start date:"
+                android:id="@+id/key_kameti_start_date"
+                android:autoText="false"
+                android:lines="1"
+                android:singleLine="true"
+                android:textSize="18dp"
+                android:ellipsize="end"
+                android:textColor="#ff9f1346"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold" />
 
+            <DatePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/value_kameti_start_date"
+                android:calendarViewShown="false"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_box" >
+
+            </DatePicker>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

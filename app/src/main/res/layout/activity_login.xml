@@ -1,123 +1,135 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout
     android:orientation="vertical"
-    tools:context=".Login"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/ic_background">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:src="@drawable/ic_one"
-            android:layout_marginRight="10dp" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:text="Request for verification code"
-            android:id="@+id/textView"
-            android:gravity="center_vertical"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:textColor="#ffff9d00" />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter your mobile number and click on 'Send SMS' button. A four digit code will be sent to your mobile via SMS. Ensure that your phone is in network"
-        android:id="@+id/textView2"
-        android:paddingLeft="80dp"
-        android:paddingRight="30dp"
-        android:textColor="#ff9f1346" />
-
-    <EditText
-        android:id="@+id/phoneNumber"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Phone Number"
-        android:inputType="phone"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="30dp">
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:fillViewport="true" >
 
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/send_sms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="Send SMS"
-        android:layout_marginRight="30dp"
-        android:textColor="#ff9f1346" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:id="@+id/linearLayout">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView2"
-            android:src="@drawable/ic_two"
-            android:layout_marginRight="10dp" />
-
-        <TextView
-            android:layout_width="fill_parent"
+        <LinearLayout
+            tools:context=".Login"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Login to your account"
-            android:id="@+id/textView3"
-            android:gravity="center_vertical"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:textColor="#ffff9d00" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:id="@+id/linearLayout2">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ensure that your mobile number is specified in step 1. Enter the latest four digit code sent to your mobile via SMS. Click on 'Verify Code' button to login"
-        android:id="@+id/textView4"
-        android:paddingLeft="80dp"
-        android:paddingRight="30dp"
-        android:textColor="#ff9f1346" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp" >
 
-    <EditText
-        android:id="@+id/code"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Verification Code"
-        android:inputType="number"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="50dp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView"
+                    android:src="@drawable/ic_one"
+                    android:layout_marginRight="10dp" />
 
-    <Button
-        android:id="@+id/verify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="Verify Code"
-        android:layout_marginRight="30dp"
-        android:textColor="#ff9f1346" />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:text="Request for verification code"
+                    android:id="@+id/textView"
+                    android:gravity="center_vertical"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffff9d00" />
+            </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter your mobile number and click on 'Send SMS' button. A four digit code will be sent to your mobile via SMS. Ensure that your phone is in network"
+                android:id="@+id/textView2"
+                android:paddingLeft="80dp"
+                android:paddingRight="30dp"
+                android:textColor="#ff9f1346" />
+
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Phone Number"
+                android:inputType="phone"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="30dp" />
+
+            <Button
+                android:id="@+id/send_sms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="Send SMS"
+                android:layout_marginRight="30dp"
+                android:textColor="#ff9f1346" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/linearLayout" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView2"
+                    android:src="@drawable/ic_two"
+                    android:layout_marginRight="10dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:text="Login to your account"
+                    android:id="@+id/textView3"
+                    android:gravity="center_vertical"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffff9d00" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ensure that your mobile number is specified in step 1. Enter the latest four digit code sent to your mobile via SMS. Click on 'Verify Code' button to login"
+                android:id="@+id/textView4"
+                android:paddingLeft="80dp"
+                android:paddingRight="30dp"
+                android:textColor="#ff9f1346" />
+
+            <EditText
+                android:id="@+id/code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Verification Code"
+                android:inputType="number"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="50dp" />
+
+            <Button
+                android:id="@+id/verify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="Verify Code"
+                android:layout_marginRight="30dp"
+                android:textColor="#ff9f1346" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

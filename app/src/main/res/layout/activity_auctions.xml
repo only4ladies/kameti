@@ -34,9 +34,16 @@
 
     <View android:background="#ffccbf7d" android:layout_width="match_parent" android:layout_height="4px"/>
 
-    <TableLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/auctionsTable"></TableLayout>
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:fillViewport="true" >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/auctionsTable"></TableLayout>
+    </ScrollView>
 
 </LinearLayout>
