@@ -15,5 +15,6 @@
     <string name="title_activity_view_kameti">Kameti</string>
     <string name="title_activity_auctions">Auctions</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_bids">Bids</string>
 
 </resources>

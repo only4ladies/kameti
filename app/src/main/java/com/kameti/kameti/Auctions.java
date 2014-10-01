@@ -1,7 +1,7 @@
 package com.kameti.kameti;
 
-import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -89,7 +88,17 @@ public class Auctions extends Activity {
             Cursor c = db.query("`auction`", dbSelect, dbWhere, dbArgs, dbGroupBy, dbFilterBy, dbSortBy);
             if (c != null && c.moveToFirst()) {
                 while(true){
+                    CharSequence auctionStatus = null;
                     BidDuration bidDuration = new BidDuration(c.getString(1), c.getString(2), c.getString(4), 1);
+                    if(current_time != null && bidDuration.contains(current_time.longValue())){
+                        auctionStatus = "Running";
+                    }
+                    else if(c.isNull(5)){
+                        auctionStatus = c.getString(2);
+                    }
+                    else {
+                        auctionStatus = "Closed";
+                    }
 
                     ShapeDrawable border = new ShapeDrawable(new RectShape());
                     border.getPaint().setStyle(Paint.Style.STROKE);
@@ -113,15 +122,25 @@ public class Auctions extends Activity {
                     tableRow.setLayoutParams(rowSize);
                     tableRow.setClickable(true);
                     tableRow.setBackground(border);
-                    if(current_time != null && bidDuration.contains(current_time.longValue())){
+                    if("Running".equals(auctionStatus)){
                         tableRow.setBackgroundColor(Color.WHITE);
                     }
-                    tableRow.setOnClickListener(new OnRowClickListener(c.getLong(0)) {
-                        @Override
-                        public void onClick(View view) {
-                            //TODO: Show auction where auction_id = rowId
-                        }
-                    });
+                    if("Closed".equals(auctionStatus) || "Running".equals(auctionStatus)) {
+                        Object[] args = {c.getLong(0), c.getString(1), auctionStatus};
+                        tableRow.setOnClickListener(new OnRowClickListener(args) {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getApplicationContext(), Bids.class);
+                                intent.putExtra("phoneNumber", phoneNumber);
+                                intent.putExtra("kametiId", kametiId);
+                                intent.putExtra("kametiName", kametiName);
+                                intent.putExtra("auctionId", (Long)args[0]);
+                                intent.putExtra("auctionName", (String)args[1]);
+                                intent.putExtra("auctionStatus", (String)args[2]);
+                                startActivity(intent);
+                            }
+                        });
+                    }
 
                     ImageView imageView = new ImageView(getApplicationContext());
                     imageView.setLayoutParams(imageSize);
@@ -147,15 +166,7 @@ public class Auctions extends Activity {
                     auctionStartTime.setTextColor(Color.parseColor("#dc8d8d8d"));
                     auctionStartTime.setGravity(Gravity.CENTER_VERTICAL);
                     auctionStartTime.setLayoutParams(textSize);
-                    if(current_time != null && bidDuration.contains(current_time.longValue())){
-                        auctionStartTime.setText("Running");
-                    }
-                    else if(c.isNull(5)){
-                        auctionStartTime.setText(c.getString(2));
-                    }
-                    else {
-                        auctionStartTime.setText("Closed");
-                    }
+                    auctionStartTime.setText(auctionStatus);
 
                     TextView minimumBidAmount = new TextView(getApplicationContext());
                     minimumBidAmount.setEllipsize(TextUtils.TruncateAt.END);

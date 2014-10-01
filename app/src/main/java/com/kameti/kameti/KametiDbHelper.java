@@ -3,11 +3,10 @@ package com.kameti.kameti;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.BaseColumns;
 
 public class KametiDbHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 14;
+    public static final int DATABASE_VERSION = 15;
     private static final String TABLE_kameti =
     "CREATE TABLE `kameti` (" +
             "`kameti_id` INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -57,6 +56,16 @@ public class KametiDbHelper extends SQLiteOpenHelper {
             "`lucky_member9` INTEGER," +
             "`lucky_member10` INTEGER" +
             ")";
+    private static final String TABLE_bid =
+    "CREATE TABLE `bid` (" +
+            "`id` INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "`auction_id` INTEGER," +
+            "`kameti_id` INTEGER," +
+            "`member_id` INTEGER," +
+            "`bid_time` TIMESTAMP," +
+            "`bid_amount` INTEGER," +
+            "`bid_status` TEXT" +
+            ")";
 
     public KametiDbHelper(Context context, String phoneNumber) {
         super(context, phoneNumber + ".db", null, DATABASE_VERSION);
@@ -66,6 +75,7 @@ public class KametiDbHelper extends SQLiteOpenHelper {
         db.execSQL(TABLE_kameti);
         db.execSQL(TABLE_members);
         db.execSQL(TABLE_auction);
+        db.execSQL(TABLE_bid);
         //TODO: Clear debug data before release
         db.execSQL("INSERT INTO `members` VALUES(1, 'Aayush', '9971308922', NULL)");
         db.execSQL("INSERT INTO `kameti` VALUES(1, 'Gokuldham', 1, '2014-09-19', 10, 25000, 1.5, '13:30:00', '15:00:00', 100, 5, 200, 2, 50, 1)");
@@ -73,12 +83,15 @@ public class KametiDbHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO `auction` VALUES(1, 1, '2014-09-19', '13:30:00', '15:00:00', 1, NULL, 3375, NULL, NULL, 1.5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)");
         db.execSQL("INSERT INTO `auction` VALUES(2, 1, '2014-10-19', '13:30:00', '15:00:00', NULL, NULL, 3000, NULL, NULL, 1.5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)");
         db.execSQL("INSERT INTO `auction` VALUES(3, 1, '2014-11-19', '13:30:00', '15:00:00', NULL, NULL, 2625, NULL, NULL, 1.5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)");
+        db.execSQL("INSERT INTO `bid` VALUES(1, 1, 1, 1, '2014-09-19 13:31:05', 3475, NULL)");
+        db.execSQL("INSERT INTO `bid` VALUES(2, 1, 1, 1, '2014-09-19 13:33:21', 3675, NULL)");
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS `kameti`");
         db.execSQL("DROP TABLE IF EXISTS `members`");
         db.execSQL("DROP TABLE IF EXISTS `auction`");
+        db.execSQL("DROP TABLE IF EXISTS `bid`");
         onCreate(db);
     }
 

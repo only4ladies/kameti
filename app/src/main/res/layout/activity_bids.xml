@@ -1,0 +1,49 @@
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/ic_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/auction_name"
+        android:background="#fffeffdc"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/value_auction_name"
+            android:autoText="false"
+            android:lines="1"
+            android:singleLine="true"
+            android:textSize="24dp"
+            android:ellipsize="end"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="#ffff9d00" />
+
+    </LinearLayout>
+
+    <View android:background="#ffccbf7d" android:layout_width="match_parent" android:layout_height="4px"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:fillViewport="true" >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bidsTable"></TableLayout>
+    </ScrollView>
+
+</LinearLayout>

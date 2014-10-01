@@ -11,21 +11,14 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.CursorAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Kameties extends Activity {
 
@@ -73,12 +66,13 @@ public class Kameties extends Activity {
                 tableRow.setLayoutParams(rowSize);
                 tableRow.setClickable(true);
                 tableRow.setBackground(border);
-                tableRow.setOnClickListener(new OnRowClickListener(c.getLong(0)) {
+                Object[] args = {c.getLong(0)};
+                tableRow.setOnClickListener(new OnRowClickListener(args) {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(getApplicationContext(), ViewKameti.class);
                         intent.putExtra("phoneNumber", phoneNumber);
-                        intent.putExtra("kametiId", rowId);
+                        intent.putExtra("kametiId", (Long)args[0]);
                         startActivity(intent);
                     }
                 });
